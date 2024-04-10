@@ -12,7 +12,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from your repository
-                git 'https://github.com/Priyesh240401/HelloWorld.git'
+                Checkout scm
             }
         }
         
