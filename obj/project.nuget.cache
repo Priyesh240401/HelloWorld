@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "PjbRnlyMKewSpc2UbaPQvc7taEdsfiurzlkfgzhLCnb5DFuV4M/L0d+eVcQAJXCuPLtVeTMzvtExUrIJTsFc6w==",
+  "success": true,
+  "projectFilePath": "D:\\HelloWorldWeb\\HelloWorldWeb\\HelloWorldWeb.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ACER\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512"
+  ],
+  "logs": []
+}

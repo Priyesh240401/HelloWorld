@@ -1,0 +1,62 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKER_IMAGE = 'priyesh2001/helloworldweb:dev'
+        DOCKER_REGISTRY_URL = 'https://index.docker.io/v1/'
+        DOCKER_USER = 'priyesh2001'
+        DOCKER_PASS = 'Pzoistbpl@2001'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from your repository
+                git 'https://github.com/Priyesh240401/HelloWorld.git'
+            }
+        }
+        
+        stage('Restore') {
+            steps {
+                // Restore dependencies (if applicable)
+                sh 'dotnet restore'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Build your application
+                sh 'dotnet build'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                // Run tests (if applicable)
+                sh 'dotnet test'
+            }
+        }
+        
+        stage('Docker Build') {
+            steps {
+                // Build Docker image
+                script {
+                    docker.withRegistry(url: DOCKER_REGISTRY_URL, credentials: [[usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS']]) {
+                        docker.image(DOCKER_IMAGE).build()
+                    }
+                }
+            }
+        }
+        
+        stage('Docker Push') {
+            steps {
+                // Push Docker image to registry
+                script {
+                    docker.withRegistry(url: DOCKER_REGISTRY_URL, credentials: [[usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS']]) {
+                        docker.image(DOCKER_IMAGE).push()
+                    }
+                }
+            }
+        }
+    }
+}
